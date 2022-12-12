@@ -18,5 +18,6 @@ public class GameManager extends AbstractGame{
     public static void main(String[] args) {
 
         GameComponent game = new GameComponent(new GameManager());
+        game.startGame();
     }
 }
