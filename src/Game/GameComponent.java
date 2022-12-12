@@ -2,13 +2,16 @@ package Game;
 
 import Window.Window;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 public class GameComponent implements Runnable{
     private AbstractGame game;
     private Window window;
     private UserInput userInput;
     private Thread thread;
     private boolean RUNNING = false;
-
+    private boolean RENDER = false;
     private final double nanoValue = 1000000000.0;
     private final double updatePerSeconds = 1.0/60.0;
 
@@ -43,10 +46,22 @@ public class GameComponent implements Runnable{
 
                 while (processedTime >= updatePerSeconds) {
                     processedTime -= updatePerSeconds;
-                    //render = true;
-                    game.update(this, (float) updatePerSeconds);
-                    System.out.println(count);
-                    count++;
+                    RENDER = true;
+
+                    if(userInput.isKey(KeyEvent.VK_UP)){
+                        System.out.println("up");
+                    }
+                    if(userInput.isKey(KeyEvent.VK_DOWN)){
+                        System.out.println("down");
+                    }
+                    if(userInput.isKey(KeyEvent.VK_LEFT)){
+                        System.out.println("left");
+                    }
+                    if(userInput.isKey(KeyEvent.VK_RIGHT)){
+                        System.out.println("right");
+                    }
+                    //game.update(this, (float) updatePerSeconds);
+                    userInput.updateKeyBool();
                 }
             }
         }

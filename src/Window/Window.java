@@ -10,9 +10,9 @@ public class Window {
     private Canvas canvas;
     private Graphics g;
 
-    private static final int width = 320;
+    private static final int width = 240;
     private static final int height = 240;
-    private static final int scalar = 4;
+    private static final int scalar = 3;
 
     private Dimension dimension = new Dimension(width*scalar,height*scalar);
 
