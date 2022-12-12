@@ -1,5 +1,7 @@
 package Game;
 
+import Window.Render;
+
 public class GameManager extends AbstractGame{
 
     public GameManager() {
@@ -12,9 +14,14 @@ public class GameManager extends AbstractGame{
     }
 
     @Override
-    public void render() {
+    public void render(GameComponent c, Render r) {
 
     }
+
+    /*@Override
+    public void render() {
+
+    }*/
     public static void main(String[] args) {
 
         GameComponent game = new GameComponent(new GameManager());

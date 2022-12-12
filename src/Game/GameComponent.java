@@ -1,6 +1,7 @@
 package Game;
 
 import Window.Window;
+import Window.Render;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,6 +10,7 @@ public class GameComponent implements Runnable{
     private AbstractGame game;
     private Window window;
     private UserInput userInput;
+    private Render render;
     private Thread thread;
     private boolean RUNNING = false;
     private boolean RENDER = false;
@@ -27,6 +29,7 @@ public class GameComponent implements Runnable{
             RUNNING = true;
             window = new Window(this);
             userInput = new UserInput(this);
+            render = new Render(this);
             thread = new Thread(this);
             thread.start();
         }
@@ -62,13 +65,14 @@ public class GameComponent implements Runnable{
                     }
                     //game.update(this, (float) updatePerSeconds);
                     userInput.updateKeyBool();
+                    render.draw(window.getCanvas().getGraphics());
                 }
             }
         }
-
-        public void render(){}
-        public void update(){}
-    public Window getWindow(){
+        public Render getRender(){
+            return render;
+        }
+        public Window getWindow(){
             return window;
-    }
-    }
+        }
+}
