@@ -25,19 +25,31 @@ public class Player extends GameObject{
     @Override
     public void update(GameComponent c, float dt) {
         if (c.getUserInput().isKey(KeyEvent.VK_UP)) {
-            yPosition -= yPosition*45;
+            if(yPosition != 0) {
+                yPosition -= 45;
+            }
+            else return;
             System.out.println(yPosition);
         }
         if (c.getUserInput().isKey(KeyEvent.VK_DOWN)) {
-            yPosition += yPosition*45;
+            if(yPosition != c.getWindow().getUpdatedHeight()) {
+                yPosition += 45;
+            }
+            else return;
             System.out.println(yPosition);
         }
         if(c.getUserInput().isKey(KeyEvent.VK_LEFT)) {
-            xPosition -= xPosition*45;
+            if(xPosition != 0) {
+                xPosition -= 45;
+            }
+            else return;
             System.out.println(xPosition);
         }
         if (c.getUserInput().isKey(KeyEvent.VK_RIGHT)) {
-            xPosition += xPosition*45;
+            if(xPosition != c.getWindow().getUpdatedWidth()) {
+                xPosition += 45;
+            }
+            else return;
             System.out.println(xPosition);
         }
     }
