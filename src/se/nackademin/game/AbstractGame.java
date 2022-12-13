@@ -1,7 +1,7 @@
-package Game;
+package se.nackademin.game;
 
 
-import Window.Render;
+import se.nackademin.Window.Render;
 
 public abstract class AbstractGame {
     public abstract void update(GameComponent gameComponent, float dt);

@@ -1,6 +1,6 @@
-package Game;
+package se.nackademin.game;
 
-import Window.Render;
+import se.nackademin.Window.Render;
 
 public class GameManager extends AbstractGame{
 

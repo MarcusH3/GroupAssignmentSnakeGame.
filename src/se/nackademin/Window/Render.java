@@ -1,6 +1,6 @@
-package Window;
+package se.nackademin.Window;
 
-import Game.GameComponent;
+import se.nackademin.game.GameComponent;
 
 import java.awt.*;
 

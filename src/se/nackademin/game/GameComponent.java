@@ -1,7 +1,7 @@
-package Game;
+package se.nackademin.game;
 
-import Window.Window;
-import Window.Render;
+import se.nackademin.Window.Window;
+import se.nackademin.Window.Render;
 
 import java.awt.event.KeyEvent;
 
