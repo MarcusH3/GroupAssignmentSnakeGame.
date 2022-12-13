@@ -9,7 +9,6 @@ public class UserInput implements KeyListener {
     private GameComponent c;
     private final int NUMBER_KEYS = 256;
     private boolean[] keys = new boolean[NUMBER_KEYS];
-    private int direction = 0;
 
     public UserInput(GameComponent c){
         this.c = c;
@@ -32,19 +31,21 @@ public class UserInput implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
         keys[e.getKeyCode()]=true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+
         keys[e.getKeyCode()]=false;
     }
 
-    public int getDirection() {
-        return direction;
-    }
+    //public int getDirection() {
+      //  return direction;
+    //}
 
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
+    //public void setDirection(int direction) {
+        //this.direction;
+    //}
 }

@@ -13,6 +13,8 @@ public class Window {
     private static final int width = 240;
     private static final int height = 240;
     private static final int scalar = 3;
+    private int updatedWidth;
+    private int updatedHeight;
 
     private Dimension dimension = new Dimension(width*scalar,height*scalar);
 
@@ -39,5 +41,13 @@ public class Window {
     }
     public Canvas getCanvas(){
         return canvas;
+    }
+
+    public int getUpdatedWidth() {
+        return width*scalar;
+    }
+
+    public int getUpdatedHeight() {
+        return height*scalar;
     }
 }
