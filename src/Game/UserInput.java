@@ -17,6 +17,9 @@ public class UserInput implements KeyListener {
     }
     public void updateKeyBool(){
         for (int i = 0; i < NUMBER_KEYS; i++) {
+            if(keys[i]){
+                System.out.println(i);
+            }
             keys[i] = false;
         }
     }
@@ -33,12 +36,20 @@ public class UserInput implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         keys[e.getKeyCode()]=true;
+        for (int i = 0; i < NUMBER_KEYS; i++) {
+            if(keys[i]){
+                System.out.println(keys[i] + " " + i);
+            }
+
+        }
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
         keys[e.getKeyCode()]=false;
+        System.out.println(keys[37]);
     }
 
     //public int getDirection() {
@@ -48,4 +59,5 @@ public class UserInput implements KeyListener {
     //public void setDirection(int direction) {
         //this.direction;
     //}
+
 }

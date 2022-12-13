@@ -5,12 +5,12 @@ import Game.GameComponent;
 import java.awt.*;
 
 public class Render {
-
-    private GameComponent c;
+    private Canvas canvas;
 
     public Render(GameComponent c) {
 
         Graphics g = c.getWindow().getCanvas().getGraphics();
+        canvas = c.getWindow().getCanvas();
     }
     public void drawGrid(Graphics g, int noGrids, int width, int height){
 
@@ -25,8 +25,11 @@ public class Render {
     }
     public void drawRectangle(Graphics g, int xPos, int yPos, int noGrids, int width, int height){
 
-        g.setColor(Color.BLACK);
+        g.setColor(Color.blue);
         g.fillRect(xPos,yPos,width/noGrids,height/noGrids);
 
+    }
+    public void clearDrawing(){
+        canvas.revalidate();
     }
 }

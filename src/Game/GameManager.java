@@ -1,8 +1,14 @@
 package Game;
 
+import GameObject.GameObject;
 import Window.Render;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameManager extends AbstractGame{
+
+    private List<GameObject> gameObjects = new ArrayList<>();
 
     public GameManager() {
         //Vad man vill lägga in..
@@ -15,13 +21,10 @@ public class GameManager extends AbstractGame{
 
     @Override
     public void render(GameComponent c, Render r) {
-
+        for(GameObject object: gameObjects){
+            render(c,r);
+        }
     }
-
-    /*@Override
-    public void render() {
-
-    }*/
     public static void main(String[] args) {
 
         GameComponent game = new GameComponent(new GameManager());
