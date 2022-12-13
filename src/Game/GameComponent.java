@@ -40,9 +40,7 @@ public class GameComponent implements Runnable {
         double timePassed = 0;
         double processedTime = 0;
 
-
         while (RUNNING) {
-
             RENDER = false;
             startTime = System.nanoTime() / nanoValue;
             timePassed = startTime - initTime;
@@ -52,35 +50,24 @@ public class GameComponent implements Runnable {
             while (processedTime >= updatePerSeconds) {
                 processedTime -= updatePerSeconds;
                 RENDER = true;
-
+                game.update(this, (float) updatePerSeconds);
+                userInput.updateKeyBool();
             }
-            if (userInput.isKey(KeyEvent.VK_UP)) {
-                System.out.println("up");
+            if (RENDER) {
+                render.clearDrawing();
+                game.render(this, render);
+                window.updateWindow();
             }
-            if (userInput.isKey(KeyEvent.VK_DOWN)) {
-                System.out.println("down");
-            }
-            if (userInput.isKey(KeyEvent.VK_LEFT)) {
-                System.out.println("left");
-            }
-            if (userInput.isKey(KeyEvent.VK_RIGHT)) {
-                System.out.println("right");
-            }
-            game.update(this, (float) updatePerSeconds);
-            userInput.updateKeyBool();
-        }
-
-        userInput.updateKeyBool();
-        if (RENDER) {
-            render.clearDrawing();
-            game.render(this, render);
-            window.updateWindow();
         }
     }
     public Render getRender(){
             return render;
-        }
-        public Window getWindow(){
-            return window;
-        }
+    }
+    public Window getWindow(){
+        return window;
+    }
+
+    public UserInput getUserInput() {
+        return userInput;
+    }
 }

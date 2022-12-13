@@ -26,7 +26,7 @@ public class Render {
     public void drawRectangle(Graphics g, int xPos, int yPos, int noGrids, int width, int height){
 
         g.setColor(Color.blue);
-        g.fillRect(xPos,yPos,width/noGrids,height/noGrids);
+        g.fillRect(xPos,yPos,width,height);
 
     }
     public void clearDrawing(){

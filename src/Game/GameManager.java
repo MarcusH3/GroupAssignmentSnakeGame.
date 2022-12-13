@@ -1,6 +1,8 @@
 package Game;
 
 import GameObject.GameObject;
+import GameObject.Player;
+import GameObject.Board;
 import Window.Render;
 
 import java.util.ArrayList;
@@ -11,18 +13,22 @@ public class GameManager extends AbstractGame{
     private List<GameObject> gameObjects = new ArrayList<>();
 
     public GameManager() {
-        //Vad man vill lägga in..
+
+        Player player = new Player(0,0);
+        gameObjects.add(player);
 
     }
     @Override
-    public void update(GameComponent gameComponent, float dt) {
-
+    public void update(GameComponent c, float dt) {
+        for(GameObject object: gameObjects){
+            object.update(c,dt);
+        }
     }
 
     @Override
     public void render(GameComponent c, Render r) {
         for(GameObject object: gameObjects){
-            render(c,r);
+            object.render(c,r);
         }
     }
     public static void main(String[] args) {
