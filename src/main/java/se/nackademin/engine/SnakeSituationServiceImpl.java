@@ -11,53 +11,40 @@ public class SnakeSituationServiceImpl implements SnakeSituationService {
 
     @Override
     public SnakeSituation moveUp(SnakeSituation situation) {
-        List<Point> snake = situation.getSnake();
+        return null;
+    }
 
-        if (snake.size() > 0) {
-            Point snakeHead = snake.get(snake.size() - 1);
-            int newY = snakeHead.y - 1;
+    @Override
+    public SnakeSituation moveDown(SnakeSituation situation) {
+        return null;
+    }
+
+    @Override
+    public SnakeSituation moveLeft(SnakeSituation situation) {
+        List<Point> snake = situation.getSnake();
+        Point head = snake.get(snake.size()-1);
+        Point food = situation.getFood();
+
+        if (head.x == food.x && (head.y - 1 == food.y)) {
+            snake.add(food);
+            situation.setSnake(snake);
+            situation.setFood(AreaUtils.getRandomPoint(snake));
+        } else {
+            snake.remove(0);
+
+            int newY = head.y - 1;
+            snake.add(new Point(head.x, newY));
+            situation.setSnake(snake);
             if (newY < 0) {
                 situation.setStatus(SnackStatus.DEAD);
             }
-            Point newHead = new Point(snakeHead.x, newY);
-
-            if (newHead.equals(situation.getFeed())) {
-                snake.add(newHead);
-                situation.setFeed(AreaUtils.getRandomPoint(snake));
-            } else {
-                snake.remove(0);
-                snake.add(newHead);
-            }
-            situation.setSnake(snake);
-        }else {
-            Point head = snake.get(0);
-            Point feed = situation.getFeed();
-            if (head.equals(feed)){
-                snake.add(feed);
-                situation.setFeed(AreaUtils.getRandomPoint(snake));
-            }else {
-                int newY = head.y - 1;
-                head.move(head.x, newY);
-                if (newY < 0) {
-                    situation.setStatus(SnackStatus.DEAD);
-                }
-            }
         }
+
         return situation;
-    }
+}
 
     @Override
-    public SnakeSituation moveDown() {
-        return null;
-    }
-
-    @Override
-    public SnakeSituation moveLeft() {
-        return null;
-    }
-
-    @Override
-    public SnakeSituation moveRight() {
+    public SnakeSituation moveRight(SnakeSituation situation) {
         return null;
     }
 

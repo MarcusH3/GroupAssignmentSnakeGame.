@@ -6,18 +6,24 @@ import java.util.List;
 
 public class SnakeSituation {
     private List<Point> snake;
-    private Point feed;
+    private Point food;
     private SnackStatus status;
 
     public SnakeSituation() {
         snake = initialSnake();
         status = SnackStatus.LIVE;
-        feed = AreaUtils.getRandomPoint(snake.get(0));
+        food = AreaUtils.getRandomPoint(snake.get(0));
     }
 
-    public SnakeSituation(Point snakePoint, Point feed, SnackStatus status) {
+    public SnakeSituation(Point snakePoint, Point food, SnackStatus status) {
         this.snake = initialSnakeWith(snakePoint);
-        this.feed = feed;
+        this.food = food;
+        this.status = status;
+    }
+
+    public SnakeSituation(List<Point> snake, Point food, SnackStatus status) {
+        this.snake = snake;
+        this.food = food;
         this.status = status;
     }
 
@@ -29,12 +35,12 @@ public class SnakeSituation {
         this.snake = snake;
     }
 
-    public Point getFeed() {
-        return feed;
+    public Point getFood() {
+        return food;
     }
 
-    public void setFeed(Point feed) {
-        this.feed = feed;
+    public void setFood(Point food) {
+        this.food = food;
     }
 
     public SnackStatus getStatus() {

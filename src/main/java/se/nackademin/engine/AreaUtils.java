@@ -37,12 +37,12 @@ public class AreaUtils {
 
     public static Point getRandomPoint(List<Point> excludePoints) {
         int x = 0, y = 0;
-        Point randomPoint = new Point();
+        Point randomPoint;
 
         Random r = new Random();
         do {
-            randomPoint.setLocation(r.nextInt(0, 16),r.nextInt(0, 16));
-        } while (!isLocated(randomPoint, excludePoints));
+            randomPoint = new Point(r.nextInt(0, 16),r.nextInt(0, 16));
+        } while (isLocated(randomPoint, excludePoints));
 
         return randomPoint;
     }

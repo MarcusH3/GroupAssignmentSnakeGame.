@@ -25,32 +25,85 @@ class SnakeSituationServiceImplTest {
         SnakeSituation snakeSituation = new SnakeSituation();
         List<Point> snack = snakeSituation.getSnake();
 
-        assertTrue(snack.size() == 1);
-        assertTrue(makeList(16).contains(snack.get(0).y));
-        assertNotEquals(snakeSituation.getFeed(), snakeSituation.getSnake().get(0));
-        assertTrue(snakeSituation.getStatus().equals(SnackStatus.LIVE));
+        assertEquals(1, snack.size());
+        assertTrue(makeList(15).contains(snack.get(0).x));
+        assertTrue(makeList(15).contains(snack.get(0).y));
+
+        assertNotEquals(snakeSituation.getFood(), snakeSituation.getSnake().get(0));
+        assertEquals(snakeSituation.getStatus(), SnackStatus.LIVE);
     }
 
     @Test
-    void should_return_correct_SnakeSituation_in_move_up_when_snake_stared() {
-        Point feed = new Point(2,2);
-        Point snakePoint = new Point(2,3);
+    void should_MOVELEFT_make_the_new_snake_bigger_when_food_exist_in_the_left_side() {
+        Point food = new Point(2, 2);
+        Point snakePoint = new Point(2, 3);
 
-        SnakeSituation snakeSituation = new SnakeSituation(snakePoint ,feed, SnackStatus.LIVE);
+        SnakeSituation snakeSituation = new SnakeSituation(snakePoint, food, SnackStatus.LIVE);
 
+        SnakeSituation actual = sut.moveLeft(snakeSituation);
 
-        SnakeSituation actual = sut.moveUp(snakeSituation);
-
-        assertTrue(actual.getSnake().size()==2);
-        System.out.println(actual.getFeed());
-        assertFalse(actual.getFeed().equals(feed));
-
-
+        assertEquals(2, actual.getSnake().size());
+        System.out.println(actual.getFood());
+        assertNotEquals(actual.getFood(), food);
     }
+
+    @Test
+    void should_MOVELEFT_doesnt_make_the_new_snake_bigger_when_food_not_exist_in_the_left_side() {
+        Point food = new Point(12, 2);
+        Point snakePoint = new Point(2, 3);
+
+        SnakeSituation snakeSituation = new SnakeSituation(snakePoint, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveLeft(snakeSituation);
+
+        assertEquals(1, actual.getSnake().size());
+        System.out.println(actual.getFood());
+        assertEquals(actual.getFood(), food);
+    }
+
+    @Test
+    void should_MOVELEFT_make_the_existed_snake_bigger_when_food_exist_in_the_left_side() {
+        Point food = new Point(5, 6);
+        List<Point> snake = new LinkedList<>();
+        snake.add(new Point(6, 8));
+        snake.add(new Point(5, 8));
+        snake.add(new Point(5, 7));
+
+        SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveLeft(snakeSituation);
+
+        assertEquals(4, actual.getSnake().size());
+        System.out.println(actual.getFood());
+        assertNotEquals(actual.getFood(), food);
+    }
+
+    @Test
+    void should_MOVELEFT_does_not_make_the_existed_snake_bigger_when_food_does_not_exist_in_the_left_side() {
+        Point food = new Point(15, 6);
+        List<Point> snake = new LinkedList<>();
+        snake.add(new Point(6, 8));
+        snake.add(new Point(5, 8));
+        snake.add(new Point(5, 7));
+
+        SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveLeft(snakeSituation);
+        List<Point> actualSnake = actual.getSnake();
+        Point actualHead = actualSnake.get(actualSnake.size() - 1);
+        Point actualTail = actualSnake.get(0);
+
+        assertEquals(3, actual.getSnake().size());
+        System.out.println(actual.getFood());
+        assertEquals(actual.getFood(), food);
+        assertTrue(actualHead.x == 5 && actualHead.y == 6);
+        assertTrue(actualTail.x == 5 && actualTail.y == 8);
+    }
+
 
     private List<Integer> makeList(int lastIndex) {
         ArrayList<Integer> integers = new ArrayList<>();
-        for (int i = 0; i < lastIndex; i++) {
+        for (int i = 0; i <= lastIndex; i++) {
             integers.add(i);
         }
         return integers;
