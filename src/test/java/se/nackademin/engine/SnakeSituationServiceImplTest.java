@@ -100,6 +100,37 @@ class SnakeSituationServiceImplTest {
         assertTrue(actualTail.x == 5 && actualTail.y == 8);
     }
 
+    @Test
+    void should_get_SnackStatus_DEAD_when_MOVELEFT_broke_the_wall() {
+        Point food = new Point(15, 6);
+        List<Point> snake = new LinkedList<>();
+        snake.add(new Point(2, 1));
+        snake.add(new Point(2, 0));
+
+        SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveLeft(snakeSituation);
+
+        assertEquals(SnackStatus.DEAD, actual.getStatus());
+    }
+
+    @Test
+    void should_get_SnackStatus_DEAD_when_MOVELEFT_make_snake_eat_itself() {
+        Point food = new Point(15, 6);
+        List<Point> snake = new LinkedList<>();
+        snake.add(new Point(7, 5));
+        snake.add(new Point(6, 5));
+        snake.add(new Point(5, 5));
+        snake.add(new Point(5, 6));
+        snake.add(new Point(6, 6));
+
+        SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveLeft(snakeSituation);
+
+        assertEquals(SnackStatus.DEAD, actual.getStatus());
+    }
+
 
     private List<Integer> makeList(int lastIndex) {
         ArrayList<Integer> integers = new ArrayList<>();

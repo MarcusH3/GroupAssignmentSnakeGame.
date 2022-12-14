@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class AreaUtils {
 
+    //Give a random number between 0-16
     public static Point getRandomPoint() {
         Random r = new Random();
         int x = r.nextInt(0, 16);
@@ -15,15 +16,12 @@ public class AreaUtils {
     }
 
     public static Point getRandomPoint(Point excludePoint) {
-        Random r = new Random();
-        int x = 0, y = 0;
-
+        Point randomPoint;
         do {
-            x = r.nextInt(0, 16);
-            y = r.nextInt(0, 16);
-        } while (x == excludePoint.x && y == excludePoint.y);
+            randomPoint = getRandomPoint();
+        } while (randomPoint.x == excludePoint.x && randomPoint.y == excludePoint.y);
 
-        return new Point(x, y);
+        return randomPoint;
     }
 
     public static boolean isLocated(Point point ,List<Point> points) {
@@ -36,12 +34,9 @@ public class AreaUtils {
     }
 
     public static Point getRandomPoint(List<Point> excludePoints) {
-        int x = 0, y = 0;
         Point randomPoint;
-
-        Random r = new Random();
         do {
-            randomPoint = new Point(r.nextInt(0, 16),r.nextInt(0, 16));
+            randomPoint = getRandomPoint();
         } while (isLocated(randomPoint, excludePoints));
 
         return randomPoint;

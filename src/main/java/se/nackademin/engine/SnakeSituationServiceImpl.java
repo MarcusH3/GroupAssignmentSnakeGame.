@@ -22,7 +22,7 @@ public class SnakeSituationServiceImpl implements SnakeSituationService {
     @Override
     public SnakeSituation moveLeft(SnakeSituation situation) {
         List<Point> snake = situation.getSnake();
-        Point head = snake.get(snake.size()-1);
+        Point head = snake.get(snake.size() - 1);
         Point food = situation.getFood();
 
         if (head.x == food.x && (head.y - 1 == food.y)) {
@@ -31,27 +31,19 @@ public class SnakeSituationServiceImpl implements SnakeSituationService {
             situation.setFood(AreaUtils.getRandomPoint(snake));
         } else {
             snake.remove(0);
-
             int newY = head.y - 1;
-            snake.add(new Point(head.x, newY));
-            situation.setSnake(snake);
-            if (newY < 0) {
+            if (newY < 0 || AreaUtils.isLocated(new Point(head.x, newY), snake)) {
                 situation.setStatus(SnackStatus.DEAD);
             }
+            snake.add(new Point(head.x, newY));
+            situation.setSnake(snake);
         }
-
         return situation;
-}
+    }
 
     @Override
     public SnakeSituation moveRight(SnakeSituation situation) {
         return null;
     }
 
-
-    private List<Point> initialSnake() {
-        List<Point> newSnake = new LinkedList<>();
-        newSnake.add(AreaUtils.getRandomPoint());
-        return newSnake;
-    }
 }
