@@ -14,13 +14,6 @@ class SnakeSituationServiceImplTest {
     SnakeSituationService sut = new SnakeSituationServiceImpl();
 
     @RepeatedTest(100)
-    void testing_Random_functionality() {
-        Random r = new Random();
-        int i = r.nextInt(0, 16);
-        System.out.println(i);
-    }
-
-    @RepeatedTest(100)
     void should_create_correct_value_when_game_started() {
         SnakeSituation snakeSituation = new SnakeSituation();
         List<Point> snack = snakeSituation.getSnake();
@@ -309,7 +302,6 @@ class SnakeSituationServiceImplTest {
         snake.add(new Point(4, 8));
         snake.add(new Point(4, 9));
         snake.add(new Point(5, 9));
-        snake.add(new Point(5, 9));
 
         SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
 
@@ -318,11 +310,11 @@ class SnakeSituationServiceImplTest {
         Point actualHead = actualSnake.get(actualSnake.size() - 1);
         Point actualTail = actualSnake.get(0);
 
-        assertEquals(8, actual.getSnake().size());
+        assertEquals(6, actual.getSnake().size());
         System.out.println(actual.getFood());
         assertEquals(actual.getFood(), food);
-        assertTrue(actualHead.x == 6 && actualHead.y == 8);
-        assertTrue(actualTail.x == 6 && actualTail.y == 9);
+        assertTrue(actualHead.x == 6 && actualHead.y == 9);
+        assertTrue(actualTail.x == 6 && actualTail.y == 8);
     }
 
     @Test
@@ -350,11 +342,128 @@ class SnakeSituationServiceImplTest {
         snake.add(new Point(4, 8));
         snake.add(new Point(4, 9));
         snake.add(new Point(5, 9));
-        snake.add(new Point(5, 9));
 
         SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
 
         SnakeSituation actual = sut.moveDown(snakeSituation);
+
+        assertEquals(SnackStatus.DEAD, actual.getStatus());
+    }
+
+    /* Testing moveUp method */
+    @Test
+    void should_MOVEUP_make_the_new_snake_bigger_when_food_exist_in_the_up_side() {
+        Point food = new Point(2, 2);
+        Point snakePoint = new Point(3, 2);
+
+        SnakeSituation snakeSituation = new SnakeSituation(snakePoint, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveUp(snakeSituation);
+
+        assertEquals(SnackStatus.LIVE, actual.getStatus());
+        assertEquals(2, actual.getSnake().size());
+        System.out.println(actual.getFood());
+        assertNotEquals(actual.getFood(), food);
+    }
+
+    @Test
+    void should_MOVEUP_doesnt_make_the_new_snake_bigger_when_food_not_exist_in_the_up_side() {
+        Point food = new Point(12, 2);
+        Point snakePoint = new Point(2, 3);
+
+        SnakeSituation snakeSituation = new SnakeSituation(snakePoint, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveUp(snakeSituation);
+
+        assertEquals(1, actual.getSnake().size());
+        assertEquals(SnackStatus.LIVE, actual.getStatus());
+        System.out.println(actual.getFood());
+        assertEquals(actual.getFood(), food);
+    }
+
+    @Test
+    void should_MOVEUP_make_the_existed_snake_bigger_when_food_exist_in_the_up_side() {
+        Point food = new Point(6, 9);
+        List<Point> snake = new LinkedList<>();
+        snake.add(new Point(6, 8));
+        snake.add(new Point(7, 8));
+        snake.add(new Point(8, 8));
+        snake.add(new Point(8, 9));
+        snake.add(new Point(7, 9));
+
+        SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveUp(snakeSituation);
+        List<Point> actualSnake = actual.getSnake();
+        Point actualHead = actualSnake.get(actualSnake.size() - 1);
+        Point actualTail = actualSnake.get(0);
+
+        assertEquals(6, actual.getSnake().size());
+        System.out.println(actual.getFood());
+        assertNotEquals(actual.getFood(), food);
+        assertTrue(actualHead.x == 6 && actualHead.y == 9);
+        assertTrue(actualTail.x == 6 && actualTail.y == 8);
+    }
+
+    @Test
+    void should_MOVEUP_does_not_make_the_existed_snake_bigger_when_food_does_not_exist_in_the_down_side() {
+        Point food = new Point(15, 6);
+        List<Point> snake = new LinkedList<>();
+        snake.add(new Point(4, 9));
+        snake.add(new Point(3, 9));
+        snake.add(new Point(3, 8));
+        snake.add(new Point(4, 8));
+        snake.add(new Point(5, 8));
+        snake.add(new Point(6, 8));
+        snake.add(new Point(6, 9));
+        snake.add(new Point(5, 9));
+
+        SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveUp(snakeSituation);
+        List<Point> actualSnake = actual.getSnake();
+        Point actualHead = actualSnake.get(actualSnake.size() - 1);
+        Point actualTail = actualSnake.get(0);
+
+        assertEquals(8, actual.getSnake().size());
+        assertEquals(SnackStatus.LIVE, actual.getStatus());
+        System.out.println(actual.getFood());
+        assertEquals(actual.getFood(), food);
+        assertTrue(actualHead.x == 4 && actualHead.y == 9);
+        assertTrue(actualTail.x == 3 && actualTail.y == 9);
+    }
+
+    @Test
+    void should_get_SnackStatus_DEAD_when_MOVEUP_broke_the_wall() {
+        Point food = new Point(1, 6);
+        List<Point> snake = new LinkedList<>();
+        snake.add(new Point(1, 10));
+        snake.add(new Point(0, 10));
+
+        SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveUp(snakeSituation);
+
+        assertEquals(SnackStatus.DEAD, actual.getStatus());
+    }
+
+    @Test
+    void should_get_SnackStatus_DEAD_when_MOVEUP_make_snake_eat_itself() {
+        Point food = new Point(15, 6);
+        List<Point> snake = new LinkedList<>();
+        snake.add(new Point(4, 10));
+        snake.add(new Point(4, 9));
+        snake.add(new Point(3, 9));
+        snake.add(new Point(3, 8));
+        snake.add(new Point(4, 8));
+        snake.add(new Point(5, 8));
+        snake.add(new Point(6, 8));
+        snake.add(new Point(6, 9));
+        snake.add(new Point(5, 9));
+
+        SnakeSituation snakeSituation = new SnakeSituation(snake, food, SnackStatus.LIVE);
+
+        SnakeSituation actual = sut.moveUp(snakeSituation);
 
         assertEquals(SnackStatus.DEAD, actual.getStatus());
     }
