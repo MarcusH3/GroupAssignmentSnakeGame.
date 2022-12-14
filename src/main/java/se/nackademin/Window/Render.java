@@ -22,7 +22,7 @@ public class Render {
         if(xPosition < 0 || xPosition > canvas.getWidth() || yPosition < 0 || yPosition > canvas.getHeight()){
             return;
         }
-        pixel[xPosition + yPosition * pixelWidth] = colorValue;
+        pixel[xPosition + yPosition*canvas.getWidth()] = colorValue;
     }
     public void drawGrid(Graphics g, int noGrids, int width, int height){
 
@@ -37,9 +37,14 @@ public class Render {
     }
     public void drawRectangle(int xPosition, int yPosition, int width, int height, int colorValue){
 
-        if(xPosition < 0 || xPosition > canvas.getWidth() || yPosition < 0 || yPosition > canvas.getHeight()){
-            return;
+        /*Graphics g = canvas.getGraphics();
+        g.setColor(Color.ORANGE);
+        g.fillRect(xPosition,yPosition,width,height);*/
+
+        if(xPosition < 0 || xPosition > canvas.getWidth() || yPosition < 0 || yPosition > canvas.getHeight()-height){
+           return;
         }
+
         else {
             for(int i = 0; i < width; i++) {
                 for(int j = 0; j < height; j++) {
@@ -47,8 +52,6 @@ public class Render {
                 }
             }
         }
-        System.out.println("");
-
     }
     public void clearDrawing(){
         for (int i = 0; i < pixel.length; i++) {

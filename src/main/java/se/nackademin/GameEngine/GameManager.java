@@ -7,13 +7,11 @@ import java.util.List;
 
 
 public class GameManager extends AbstractGame{
-
     private List<GameObject> gameObjects = new ArrayList<>();
 
     public GameManager() {
 
-
-        Player player = new Player(320,320);
+        Player player = new Player(0,0);
         gameObjects.add(player);
 
     }
@@ -23,7 +21,6 @@ public class GameManager extends AbstractGame{
             object.update(c,dt);
         }
     }
-
     @Override
     public void render(GameComponent c, Render r) {
         //  c.getRender().drawGrid(c.getWindow().getCanvas().getGraphics(), 16,720,720);

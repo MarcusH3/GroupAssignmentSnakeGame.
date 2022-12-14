@@ -11,7 +11,7 @@ public class GameComponent implements Runnable {
     private boolean RUNNING = false;
     private boolean RENDER = false;
     private final double nanoValue = 1000000000.0;
-    private final double updatePerSeconds = 1.0 / 10.0;
+    private final double updatePerSeconds = 1.0 / 5.0;
 
     public GameComponent(AbstractGame game) {
         this.game = game;
