@@ -1,4 +1,4 @@
-package se.nackademin.game;
+package GameEngine;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,6 +16,9 @@ public class UserInput implements KeyListener {
     }
     public void updateKeyBool(){
         for (int i = 0; i < NUMBER_KEYS; i++) {
+            if(keys[i]){
+                System.out.println(i);
+            }
             keys[i] = false;
         }
     }
@@ -39,12 +42,4 @@ public class UserInput implements KeyListener {
 
         keys[e.getKeyCode()]=false;
     }
-
-    //public int getDirection() {
-      //  return direction;
-    //}
-
-    //public void setDirection(int direction) {
-        //this.direction;
-    //}
 }
