@@ -1,0 +1,6 @@
+package GameObject;
+
+public enum MoveState {
+    UP,DOWN,LEFT,RIGHT,STILL;
+
+}
