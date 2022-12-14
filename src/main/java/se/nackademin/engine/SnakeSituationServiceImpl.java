@@ -5,9 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SnakeSituationServiceImpl implements SnakeSituationService {
-    final static int X_AREA = 16;
-    final static int Y_AREA = 16;
-
 
     @Override
     public SnakeSituation moveUp(SnakeSituation situation) {
