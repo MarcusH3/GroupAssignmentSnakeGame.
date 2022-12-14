@@ -19,8 +19,16 @@ public class Player extends GameObject {
         this.yPosition= yPosition*45;
         this.objectWidth = 45;
         this.objectHeight = 45;
-        moveState = MoveState.STILL;
+        moveState = MoveState.DOWN;
     }
+
+   /* @Override
+    public void render(GameComponent c, Render r) {
+        colorRGB = new Color(Color.GREEN.getRGB());
+        colorValue = colorRGB.getRGB();
+        r.drawRectangle(xPosition,yPosition,45,45,colorValue);
+    }*/
+
 
     @Override
     public void render(GameComponent c, Render r) {
@@ -28,6 +36,7 @@ public class Player extends GameObject {
         colorValue = colorRGB.getRGB();
         r.drawRectangle(xPosition,yPosition,45,45,colorValue);
     }
+
 
     @Override
     public void update(GameComponent c, float dt) {

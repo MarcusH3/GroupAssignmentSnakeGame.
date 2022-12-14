@@ -13,7 +13,7 @@ public class GameManager extends AbstractGame{
     public GameManager() {
 
 
-        Player player = new Player(320,320);
+        Player player = new Player(0,0);
         gameObjects.add(player);
 
     }
