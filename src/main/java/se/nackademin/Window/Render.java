@@ -1,6 +1,6 @@
-package main.java.se.nackademin.Window;
+package se.nackademin.Window;
 
-import main.java.se.nackademin.GameEngine.GameComponent;
+import se.nackademin.GameEngine.GameComponent;
 
 import java.awt.*;
 import java.awt.image.DataBufferInt;

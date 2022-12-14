@@ -1,6 +1,6 @@
-package main.java.se.nackademin.GameEngine;
-import main.java.se.nackademin.Window.Window;
-import main.java.se.nackademin.Window.Render;
+package se.nackademin.GameEngine;
+import se.nackademin.Window.Window;
+import se.nackademin.Window.Render;
 
 public class GameComponent implements Runnable {
     private AbstractGame game;

@@ -1,8 +1,8 @@
 
-        package main.java.se.nackademin.GameObject;
+        package se.nackademin.GameObject;
 
-        import main.java.se.nackademin.GameEngine.GameComponent;
-        import main.java.se.nackademin.Window.*;
+        import se.nackademin.GameEngine.GameComponent;
+        import se.nackademin.Window.*;
         import java.awt.*;
         import java.awt.event.KeyEvent;
 

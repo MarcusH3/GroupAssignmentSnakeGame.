@@ -1,4 +1,4 @@
-package main.java.se.nackademin.GameObject;
+package se.nackademin.GameObject;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
