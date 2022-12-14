@@ -7,7 +7,6 @@ import java.awt.*;
 
 public class Food extends GameObject{
 
-
     private int unitSize = 45;
     private Color colorRGB;
     private int colorValue;
@@ -28,5 +27,4 @@ public class Food extends GameObject{
     public void render(GameComponent c, Render render) {
 
     }
-
 }

@@ -1,9 +1,10 @@
-package main.java.se.nackademin.GameObject;
 
-import main.java.se.nackademin.GameEngine.GameComponent;
-import main.java.se.nackademin.Window.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
+        package main.java.se.nackademin.GameObject;
+
+        import main.java.se.nackademin.GameEngine.GameComponent;
+        import main.java.se.nackademin.Window.*;
+        import java.awt.*;
+        import java.awt.event.KeyEvent;
 
 public class Player extends GameObject {
 
@@ -32,25 +33,25 @@ public class Player extends GameObject {
     @Override
     public void update(GameComponent c, float dt) {
 
-            if (c.getUserInput().isKey(KeyEvent.VK_UP)) {
-                moveState = MoveState.UP;
-            }
-            if (c.getUserInput().isKey(KeyEvent.VK_DOWN)) {
-                moveState = MoveState.DOWN;
-            }
-            if (c.getUserInput().isKey(KeyEvent.VK_LEFT)) {
-                moveState = MoveState.LEFT;
-            }
-            if (c.getUserInput().isKey(KeyEvent.VK_RIGHT)) {
-                moveState = MoveState.RIGHT;
-            }
-            switch (moveState) {
-                case UP -> yPosition -= 45;
-                case DOWN -> yPosition += 45;
-                case LEFT -> xPosition -= 45;
-                case RIGHT -> xPosition += 45;
-                case STILL -> xPosition = xPosition;
-            }
+        if (c.getUserInput().isKey(KeyEvent.VK_UP)) {
+            moveState = MoveState.UP;
+        }
+        if (c.getUserInput().isKey(KeyEvent.VK_DOWN)) {
+            moveState = MoveState.DOWN;
+        }
+        if (c.getUserInput().isKey(KeyEvent.VK_LEFT)) {
+            moveState = MoveState.LEFT;
+        }
+        if (c.getUserInput().isKey(KeyEvent.VK_RIGHT)) {
+            moveState = MoveState.RIGHT;
+        }
+        switch (moveState) {
+            case UP -> yPosition -= 45;
+            case DOWN -> yPosition += 45;
+            case LEFT -> xPosition -= 45;
+            case RIGHT -> xPosition += 45;
+            case STILL -> xPosition = xPosition;
+        }
         if(xPosition<0){
             xPosition = 0;
             moveState = MoveState.STILL;
@@ -69,4 +70,3 @@ public class Player extends GameObject {
         }
     }
 }
-
