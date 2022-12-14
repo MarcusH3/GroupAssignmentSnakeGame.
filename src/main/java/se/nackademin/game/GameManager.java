@@ -1,27 +1,36 @@
-package se.nackademin.game;
+package GameEngine;
 
-import se.nackademin.Window.Render;
+import GameObject.GameObject;
+import GameObject.Player;
+import Window.Render;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameManager extends AbstractGame{
 
+    private List<GameObject> gameObjects = new ArrayList<>();
+
     public GameManager() {
-        //Vad man vill lägga in..
+
+        Player player = new Player(320,320);
+        gameObjects.add(player);
 
     }
     @Override
-    public void update(GameComponent gameComponent, float dt) {
-
+    public void update(GameComponent c, float dt) {
+        for(GameObject object: gameObjects){
+            object.update(c,dt);
+        }
     }
 
     @Override
     public void render(GameComponent c, Render r) {
-
+      //  c.getRender().drawGrid(c.getWindow().getCanvas().getGraphics(), 16,720,720);
+        for(GameObject object: gameObjects){
+            object.render(c,r);
+        }
     }
-
-    /*@Override
-    public void render() {
-
-    }*/
     public static void main(String[] args) {
 
         GameComponent game = new GameComponent(new GameManager());
