@@ -1,8 +1,8 @@
-package main.java.se.nackademin.GameEngine;
-import main.java.se.nackademin.GameObject.GameObject;
-import main.java.se.nackademin.GameObject.Sound;
-import main.java.se.nackademin.Window.Render;
-import main.java.se.nackademin.GameObject.Player;
+package se.nackademin.GameEngine;
+import se.nackademin.GameObject.GameObject;
+import se.nackademin.GameObject.Sound;
+import se.nackademin.Window.Render;
+import se.nackademin.GameObject.Player;
 import java.util.ArrayList;
 import java.util.List;
 

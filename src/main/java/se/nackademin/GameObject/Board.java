@@ -1,6 +1,6 @@
-package main.java.se.nackademin.GameObject;
-import main.java.se.nackademin.GameEngine.GameComponent;
-import main.java.se.nackademin.Window.*;
+package se.nackademin.GameObject;
+import se.nackademin.GameEngine.GameComponent;
+import se.nackademin.Window.*;
 
 public class Board extends GameObject {
 

@@ -1,5 +1,5 @@
-package main.java.se.nackademin.GameEngine;
-import main.java.se.nackademin.Window.Render;
+package se.nackademin.GameEngine;
+import se.nackademin.Window.Render;
 
 public abstract class AbstractGame {
     public abstract void update(GameComponent c, float dt);

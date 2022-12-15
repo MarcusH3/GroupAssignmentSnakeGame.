@@ -1,4 +1,4 @@
-package main.java.se.nackademin.GameEngine;
+package se.nackademin.GameEngine;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
