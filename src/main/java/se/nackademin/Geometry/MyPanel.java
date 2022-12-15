@@ -11,6 +11,7 @@ public class MyPanel extends JPanel {
     ShapeMaker shapeMaker;
 
 
+
     public MyPanel() {
 
         this.setBackground(Color.gray);
@@ -32,6 +33,7 @@ public class MyPanel extends JPanel {
         shapeMaker.myshapes.drawShape(g2d, 0, 0, panelWidth, panelHeight);
 
     }
+
 
 
 }

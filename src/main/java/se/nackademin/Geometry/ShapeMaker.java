@@ -1,6 +1,7 @@
 package se.nackademin.Geometry;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class ShapeMaker {
         shapesList.add(new ShapesEllips());
         shapesList.add(new ShapesRectangle());
 
-       // Collections.shuffle(shapesList);
+        //Collections.shuffle(shapesList);
         myshapes = shapesList.get(0);
     }
 
