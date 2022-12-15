@@ -3,17 +3,13 @@ package se.nackademin.Geometry;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 
-public class MyPanel extends JPanel {
+public class ImagePanel extends JPanel {
     int panelWidth = 45;
     int panelHeight = 45;
     ShapeMaker shapeMaker;
 
-
-
-    public MyPanel() {
-        this.setBackground(Color.gray);
+    public ImagePanel() {
         this.setBounds(10, 10, panelWidth, panelHeight);
         shapeMaker = new ShapeMaker();
     }
@@ -31,6 +27,7 @@ public class MyPanel extends JPanel {
         shapeMaker.myshapes.drawShape(g2d, 0, 0, panelWidth, panelHeight);
 
     }
+
 
 
 

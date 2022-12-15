@@ -15,8 +15,6 @@ public class ShapesDiamond implements Shapes {
 
         g2d.setStroke(new BasicStroke(3));
 
-
-
         Path2D.Double p = new Path2D.Double();
         for (int i = 0; i <2 ; i++) {
             p.moveTo(x + (w / 2), y);
@@ -32,13 +30,6 @@ public class ShapesDiamond implements Shapes {
                 g2d.setColor(colors.getDarkColor());
                 g2d.draw(p);
             }
-
         }
-
-
-
-
-
     }
-
 }

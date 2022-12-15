@@ -6,10 +6,9 @@ import javax.swing.*;
 
 public class BuffImageMaker {
 
-
-    MyPanel myPanel;
+    ImagePanel myPanel;
     public BuffImageMaker(){
-        myPanel = new MyPanel();
+        myPanel = new ImagePanel();
         BufferedImage myCreatedBufImage = getBufferedImage(myPanel);
         showBufferedImage(myCreatedBufImage);
     }
@@ -32,7 +31,7 @@ public class BuffImageMaker {
         showframe.setPreferredSize(new Dimension(200,200));
         showframe.setMinimumSize(new Dimension(200,200));
         showframe.setMaximumSize(new Dimension(200,200));
-        showframe.getContentPane().setBackground(Color.white);
+       // showframe.getContentPane().setBackground(Color.white);
         JLabel myLabel = new JLabel(new ImageIcon(buffim));
         myLabel.setBounds(10,10,100,100);
         showframe.add(myLabel);
@@ -44,6 +43,7 @@ public class BuffImageMaker {
 
     }
 
+    //testmetod som tas bort senare:
     public static void main(String[] args) {
         BuffImageMaker bf = new BuffImageMaker();
     }
