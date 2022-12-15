@@ -1,4 +1,4 @@
-package main.java.se.nackademin.Geometry;
+package se.nackademin.Geometry;
 
 import java.awt.*;
 import java.awt.geom.Path2D;

@@ -1,7 +1,8 @@
-package main.java.se.nackademin.Geometry;
+package se.nackademin.Geometry;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ShapeMaker {
 
