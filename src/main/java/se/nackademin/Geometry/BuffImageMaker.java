@@ -23,17 +23,17 @@ public class BuffImageMaker {
         panel.paint(g);
         g.dispose();
 
-        System.out.println(buffImage);
         return buffImage;
     }
 
-    public void showBufferedImage(BufferedImage bim){
+    //testmetod som tas bort senare:
+    public void showBufferedImage(BufferedImage buffim){
         JFrame showframe = new JFrame();
         showframe.setPreferredSize(new Dimension(200,200));
         showframe.setMinimumSize(new Dimension(200,200));
         showframe.setMaximumSize(new Dimension(200,200));
         showframe.getContentPane().setBackground(Color.white);
-        JLabel myLabel = new JLabel(new ImageIcon(bim));
+        JLabel myLabel = new JLabel(new ImageIcon(buffim));
         myLabel.setBounds(10,10,100,100);
         showframe.add(myLabel);
 

@@ -13,12 +13,9 @@ public class MyPanel extends JPanel {
 
 
     public MyPanel() {
-
         this.setBackground(Color.gray);
         this.setBounds(10, 10, panelWidth, panelHeight);
         shapeMaker = new ShapeMaker();
-
-
     }
 
     @Override
@@ -30,6 +27,7 @@ public class MyPanel extends JPanel {
         g2d.setColor(bgcolor);
         Rectangle2D.Double r = new Rectangle2D.Double(0, 0, panelWidth, panelHeight);
         g2d.fill(r);
+
         shapeMaker.myshapes.drawShape(g2d, 0, 0, panelWidth, panelHeight);
 
     }
