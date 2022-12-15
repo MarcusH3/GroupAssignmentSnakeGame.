@@ -2,12 +2,13 @@ package se.nackademin.Geometry;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import javax.swing.JPanel;
 
 public class BuffImageMaker {
 
 
 
-    public BufferedImage getBufferedImage(MyPanel panel){
+    public BufferedImage getBufferedImage(JPanel panel){
         BufferedImage buffImage = null;
         buffImage = new BufferedImage(panel.getWidth(),panel.getHeight(),BufferedImage.TYPE_INT_RGB);
         Graphics2D g = buffImage.createGraphics();
@@ -16,6 +17,7 @@ public class BuffImageMaker {
         panel.paint(g);
         g.dispose();
 
+        System.out.println(buffImage);
         return buffImage;
     }
 }

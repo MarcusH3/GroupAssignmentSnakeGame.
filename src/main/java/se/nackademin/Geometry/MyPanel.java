@@ -10,11 +10,13 @@ public class MyPanel extends JPanel {
     int panelHeight = 45;
     ShapeMaker shapeMaker;
 
+
     public MyPanel() {
 
         this.setBackground(Color.gray);
         this.setBounds(10, 10, panelWidth, panelHeight);
         shapeMaker = new ShapeMaker();
+
 
     }
 

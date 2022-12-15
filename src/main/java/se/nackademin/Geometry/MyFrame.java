@@ -9,7 +9,7 @@ public class MyFrame extends JFrame {
     BuffImageMaker buffmaker;
 
     public MyFrame(){
-
+        buffmaker= new BuffImageMaker();
 
         this.setPreferredSize(new Dimension(200,200));
         this.setMinimumSize(new Dimension(200,200));
@@ -21,7 +21,7 @@ public class MyFrame extends JFrame {
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         myPanel = new MyPanel();
-
+        buffmaker.getBufferedImage(new MyPanel());
 
 
         this.add(myPanel);
