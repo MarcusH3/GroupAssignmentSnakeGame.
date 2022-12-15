@@ -3,6 +3,10 @@
 
         import se.nackademin.GameEngine.GameComponent;
         import se.nackademin.Window.*;
+        import se.nackademin.engine.SnakeSituation;
+        import se.nackademin.engine.SnakeSituationService;
+        import se.nackademin.engine.SnakeSituationServiceImpl;
+
         import java.awt.*;
         import java.awt.event.KeyEvent;
 
@@ -14,6 +18,9 @@ public class Player extends GameObject {
     private Color colorRGB;
     private int colorValue;
     private MoveState moveState;
+    private SnakeSituationService snakeSituationService;
+    private SnakeSituation snakeSituation;
+    private SnakeSituationServiceImpl snakeImpl;
 
     public Player(int xPosition, int yPosition) {
         this.xPosition = xPosition;
@@ -21,17 +28,29 @@ public class Player extends GameObject {
         this.objectWidth = 45;
         this.objectHeight = 45;
         moveState = MoveState.STILL;
+        snakeSituation = new SnakeSituation();
+        snakeImpl = new SnakeSituationServiceImpl();
     }
 
     @Override
     public void render(GameComponent c, Render r) {
         colorRGB = new Color(Color.GREEN.getRGB());
         colorValue = colorRGB.getRGB();
-        r.drawRectangle(xPosition,yPosition,unitSize,unitSize,colorValue);
+
+        for(Point point: snakeSituation.getSnake()){
+            r.drawRectangle(point.x*unitSize,point.y*unitSize,unitSize,unitSize,colorValue);
+        }
+        colorRGB = new Color(Color.RED.getRGB());
+        colorValue = colorRGB.getRGB();
+
+            r.drawRectangle(snakeSituation.getFood().x*unitSize,snakeSituation.getFood().y*unitSize,unitSize,unitSize,colorValue);
+
+
     }
 
     @Override
     public void update(GameComponent c, float dt) {
+
 
         if (c.getUserInput().isKey(KeyEvent.VK_UP)) {
             moveState = MoveState.UP;
@@ -46,10 +65,11 @@ public class Player extends GameObject {
             moveState = MoveState.RIGHT;
         }
         switch (moveState) {
-            case UP -> yPosition -= 45;
-            case DOWN -> yPosition += 45;
-            case LEFT -> xPosition -= 45;
-            case RIGHT -> xPosition += 45;
+
+            case UP -> snakeImpl.moveUp(snakeSituation);
+            case DOWN -> snakeImpl.moveDown(snakeSituation);
+            case LEFT -> snakeImpl.moveLeft(snakeSituation);
+            case RIGHT -> snakeImpl.moveRight(snakeSituation);
             case STILL -> xPosition = xPosition;
         }
         if(xPosition<0){

@@ -7,7 +7,7 @@ import java.util.List;
 public class SnakeSituationServiceImpl implements SnakeSituationService {
 
     @Override
-    public SnakeSituation moveUp(SnakeSituation situation) {
+    public SnakeSituation moveLeft(SnakeSituation situation) {
         List<Point> snake = situation.getSnake();
         Point head = snake.get(snake.size() - 1);
         Point food = situation.getFood();
@@ -29,7 +29,7 @@ public class SnakeSituationServiceImpl implements SnakeSituationService {
     }
 
     @Override
-    public SnakeSituation moveDown(SnakeSituation situation) {
+    public SnakeSituation moveRight(SnakeSituation situation) {
         List<Point> snake = situation.getSnake();
         Point head = snake.get(snake.size() - 1);
         Point food = situation.getFood();
@@ -51,7 +51,7 @@ public class SnakeSituationServiceImpl implements SnakeSituationService {
     }
 
     @Override
-    public SnakeSituation moveLeft(SnakeSituation situation) {
+    public SnakeSituation moveUp(SnakeSituation situation) {
         List<Point> snake = situation.getSnake();
         Point head = snake.get(snake.size() - 1);
         Point food = situation.getFood();
@@ -73,7 +73,7 @@ public class SnakeSituationServiceImpl implements SnakeSituationService {
     }
 
     @Override
-    public SnakeSituation moveRight(SnakeSituation situation) {
+    public SnakeSituation moveDown(SnakeSituation situation) {
         List<Point> snake = situation.getSnake();
         Point head = snake.get(snake.size() - 1);
         Point food = situation.getFood();

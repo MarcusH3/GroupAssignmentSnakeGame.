@@ -14,7 +14,7 @@ public class GameManager extends AbstractGame{
 
         Player player = new Player(0,0);
         gameObjects.add(player);       
-        playMusic(1);
+        //playMusic(1);
 
     }
 
