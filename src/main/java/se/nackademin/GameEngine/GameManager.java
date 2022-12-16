@@ -1,5 +1,4 @@
 package se.nackademin.GameEngine;
-import se.nackademin.GameObject.Food;
 import se.nackademin.GameObject.GameObject;
 import se.nackademin.GameObject.Sound;
 import se.nackademin.Window.Render;
@@ -14,10 +13,8 @@ public class GameManager extends AbstractGame{
 
     public GameManager() {
 
-        Food food = new Food(0,0);
         Player player = new Player(0,0);
         gameObjects.add(player);
-        gameObjects.add(food);
         //playMusic(1);
 
     }
