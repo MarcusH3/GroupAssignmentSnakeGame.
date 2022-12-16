@@ -13,6 +13,8 @@ public class Render {
     private int[] pixel;
     private int[] imagePixel;
 
+
+
     public Render(GameComponent c) {
 
         Graphics g = c.getWindow().getCanvas().getGraphics();
@@ -26,6 +28,7 @@ public class Render {
         }
         pixel[xPosition + yPosition*canvas.getWidth()] = colorValue;
     }
+
     public void drawGrid(Graphics g, int noGrids, int width, int height){
 
         for (int i = 0; i < noGrids; i++) {
@@ -60,6 +63,7 @@ public class Render {
             }
         }
     }
+
     public void clearDrawing(){
         for (int i = 0; i < pixel.length; i++) {
             pixel[i] = 0;
