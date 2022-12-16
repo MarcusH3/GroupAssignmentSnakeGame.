@@ -11,6 +11,7 @@ public class ImagePanel extends JPanel {
 
     public ImagePanel() {
         this.setBounds(10, 10, panelWidth, panelHeight);
+        this.setBackground(Color.black);
         shapeMaker = new ShapeMaker();
     }
 
