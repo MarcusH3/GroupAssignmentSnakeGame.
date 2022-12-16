@@ -32,9 +32,7 @@ public class GameComponent implements Runnable {
 
     @Override
     public void run() {
-       /* while(Menue){
-            userInput =
-            */
+
         int count = 1;
         double initTime = System.nanoTime() / nanoValue;
         double startTime = 0;
