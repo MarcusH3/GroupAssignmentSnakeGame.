@@ -3,6 +3,7 @@ package se.nackademin.Window;
 import se.nackademin.GameEngine.GameComponent;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 public class Render {
@@ -10,6 +11,7 @@ public class Render {
     private int pixelWidth = 45;
     private int pixelHeight = 45;
     private int[] pixel;
+    private int[] imagePixel;
 
     public Render(GameComponent c) {
 
@@ -37,19 +39,24 @@ public class Render {
     }
     public void drawRectangle(int xPosition, int yPosition, int width, int height, int colorValue){
 
-        /*Graphics g = canvas.getGraphics();
-        g.setColor(Color.ORANGE);
-        g.fillRect(xPosition,yPosition,width,height);*/
-
         if(xPosition < 0 || xPosition > canvas.getWidth() || yPosition < 0 || yPosition > canvas.getHeight()-height){
            return;
         }
-
         else {
             for(int i = 0; i < width; i++) {
                 for(int j = 0; j < height; j++) {
                     paintPixel((xPosition +i),(yPosition+j),colorValue);
                 }
+            }
+        }
+    }
+    public void drawBufferedImage(BufferedImage bufferedImage, int xPosition, int yPosition){
+        int width = bufferedImage.getWidth();
+        int height = bufferedImage.getHeight();
+        imagePixel = bufferedImage.getRGB(0,0,width,height,null,0,width);
+        for(int i = 0; i < height; i++) {
+            for(int j = 0; j < width; j++) {
+                paintPixel((xPosition +j),(yPosition+i),imagePixel[j +i*width]);
             }
         }
     }

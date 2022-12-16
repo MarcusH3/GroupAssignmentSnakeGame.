@@ -1,4 +1,5 @@
 package se.nackademin.GameEngine;
+import se.nackademin.GameObject.Food;
 import se.nackademin.GameObject.GameObject;
 import se.nackademin.GameObject.Sound;
 import se.nackademin.Window.Render;
@@ -10,16 +11,16 @@ import java.util.List;
 public class GameManager extends AbstractGame{
     private List<GameObject> gameObjects = new ArrayList<>();
     Sound sound = new Sound();
+
     public GameManager() {
 
+        Food food = new Food(0,0);
         Player player = new Player(0,0);
-        gameObjects.add(player);       
+        gameObjects.add(player);
+        gameObjects.add(food);
         //playMusic(1);
 
     }
-
-
-
     @Override
     public void update(GameComponent c, float dt) {
         for(GameObject object: gameObjects){
@@ -29,7 +30,6 @@ public class GameManager extends AbstractGame{
     }
     @Override
     public void render(GameComponent c, Render r) {
-        //  c.getRender().drawGrid(c.getWindow().getCanvas().getGraphics(), 16,720,720);
         for(GameObject object: gameObjects){
             object.render(c,r);
             

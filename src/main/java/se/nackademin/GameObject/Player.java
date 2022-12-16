@@ -2,15 +2,19 @@
         package se.nackademin.GameObject;
 
         import se.nackademin.GameEngine.GameComponent;
+        import se.nackademin.Geometry.BuffImageMaker;
+        import se.nackademin.Geometry.ShapeMaker;
         import se.nackademin.Window.*;
+        import se.nackademin.engine.SnackStatus;
         import se.nackademin.engine.SnakeSituation;
         import se.nackademin.engine.SnakeSituationService;
         import se.nackademin.engine.SnakeSituationServiceImpl;
 
         import java.awt.*;
         import java.awt.event.KeyEvent;
+        import java.awt.image.BufferedImage;
 
-public class Player extends GameObject {
+        public class Player extends GameObject {
 
 
     private int unitSize = 45;
@@ -21,6 +25,9 @@ public class Player extends GameObject {
     private SnakeSituationService snakeSituationService;
     private SnakeSituation snakeSituation;
     private SnakeSituationServiceImpl snakeImpl;
+    private SnackStatus snackStatus;
+    BuffImageMaker buffImageMaker = new BuffImageMaker();
+    BufferedImage bufferedImage;
 
     public Player(int xPosition, int yPosition) {
         this.xPosition = xPosition;
@@ -30,6 +37,8 @@ public class Player extends GameObject {
         moveState = MoveState.STILL;
         snakeSituation = new SnakeSituation();
         snakeImpl = new SnakeSituationServiceImpl();
+        snackStatus = SnackStatus.LIVE;
+        bufferedImage = buffImageMaker.getBufferedImage(buffImageMaker.getMyPanel());
     }
 
     @Override
@@ -38,14 +47,12 @@ public class Player extends GameObject {
         colorValue = colorRGB.getRGB();
 
         for(Point point: snakeSituation.getSnake()){
+
             r.drawRectangle(point.x*unitSize,point.y*unitSize,unitSize,unitSize,colorValue);
+
+            r.drawBufferedImage(bufferedImage,snakeSituation.getFood().x*unitSize, snakeSituation.getFood().y*unitSize);
+
         }
-        colorRGB = new Color(Color.RED.getRGB());
-        colorValue = colorRGB.getRGB();
-
-            r.drawRectangle(snakeSituation.getFood().x*unitSize,snakeSituation.getFood().y*unitSize,unitSize,unitSize,colorValue);
-
-
     }
 
     @Override
@@ -65,28 +72,22 @@ public class Player extends GameObject {
             moveState = MoveState.RIGHT;
         }
         switch (moveState) {
-
             case UP -> snakeImpl.moveUp(snakeSituation);
             case DOWN -> snakeImpl.moveDown(snakeSituation);
             case LEFT -> snakeImpl.moveLeft(snakeSituation);
             case RIGHT -> snakeImpl.moveRight(snakeSituation);
             case STILL -> xPosition = xPosition;
+            case DEAD -> xPosition = xPosition;
         }
-        if(xPosition<0){
-            xPosition = 0;
-            moveState = MoveState.STILL;
-        }
-        if(xPosition == c.getWindow().getCanvas().getWidth()){
-            xPosition = c.getWindow().getCanvas().getWidth()-45;
-            moveState = MoveState.STILL;
-        }
-        if(yPosition<0){
-            yPosition = 0;
-            moveState = MoveState.STILL;
-        }
-        if (yPosition == c.getWindow().getCanvas().getHeight()){
-            yPosition = c.getWindow().getCanvas().getHeight()-45;
-            moveState = MoveState.STILL;
+        switch (snakeSituation.getStatus()){
+            case EAT: {
+                c.setSnakeVelocity();
+                buffImageMaker = new BuffImageMaker();
+                bufferedImage = buffImageMaker.getBufferedImage(buffImageMaker.getMyPanel());
+                break;
+            }
+            case DEAD: moveState = MoveState.DEAD;
+            break;
         }
     }
 }

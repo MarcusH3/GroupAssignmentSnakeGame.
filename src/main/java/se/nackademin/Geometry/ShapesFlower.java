@@ -23,11 +23,6 @@ public class ShapesFlower implements Shapes {
             g2d.setColor(colors.getDarkColor());
             g2d.draw(e);
         }
-
-
-
-
-
     }
 
 }

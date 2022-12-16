@@ -17,7 +17,7 @@ public class ShapeMaker {
         shapesList.add(new ShapesEllips());
         shapesList.add(new ShapesRectangle());
 
-        //Collections.shuffle(shapesList);
+        Collections.shuffle(shapesList);
         myshapes = shapesList.get(0);
     }
 
