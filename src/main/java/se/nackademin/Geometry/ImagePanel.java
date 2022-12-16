@@ -20,6 +20,11 @@ public class ImagePanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
+        RenderingHints rh = new RenderingHints(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHints(rh);
+
         Color bgcolor = this.getBackground();
         g2d.setColor(bgcolor);
         Rectangle2D.Double r = new Rectangle2D.Double(0, 0, panelWidth, panelHeight);

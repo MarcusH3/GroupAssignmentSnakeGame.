@@ -21,11 +21,4 @@ public class ShapeMaker {
         myshapes = shapesList.get(0);
     }
 
-    public Shapes getMyshapes() {
-        return myshapes;
-    }
-
-    public List<Shapes> getShapesList() {
-        return shapesList;
-    }
 }
