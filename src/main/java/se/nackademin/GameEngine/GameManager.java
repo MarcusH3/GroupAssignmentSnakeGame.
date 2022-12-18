@@ -11,6 +11,7 @@ public class GameManager extends AbstractGame{
     private List<GameObject> gameObjects = new ArrayList<>();
     Sound sound = new Sound();
     Sound eatSound = new Sound();
+    Sound GameOver = new Sound();
 
 
 
@@ -39,6 +40,7 @@ public class GameManager extends AbstractGame{
 
         GameComponent game = new GameComponent(new GameManager());
         game.startGame();
+
     }
     public void playMusic(int i) {
         sound.setFile(i);
@@ -46,10 +48,15 @@ public class GameManager extends AbstractGame{
         sound.loop();
     }
     public void stopMusic(){
+
         sound.stop();
     }
     public void playEatSound(int i){
         eatSound.setFile(i);
         eatSound.play();
+    }
+    public void playGameOver(int i){
+        GameOver.setFile(i);
+        GameOver.play();
     }
 }
