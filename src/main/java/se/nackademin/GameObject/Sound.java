@@ -11,6 +11,8 @@ public class Sound {
     public Sound(){
         soundURL[0] = getClass().getResource("/Sound/powerup.wav");
         soundURL[1] = getClass().getResource("/Sound/Snake III JAVA game theme song (1).wav");
+        soundURL[2] = getClass().getResource("/Sound/Game Over (8-Bit Music).wav");
+
 
     }
     public void setFile(int i) {

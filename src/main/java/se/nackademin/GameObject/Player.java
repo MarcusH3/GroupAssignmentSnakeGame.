@@ -24,6 +24,7 @@
             BuffImageMaker buffImageMaker = new BuffImageMaker();
             private Sound sound = new Sound();
             private Sound eatSound = new Sound();
+            private Sound gameOverSound = new Sound();
     BufferedImage bufferedImage;
 
     public Player(int xPosition, int yPosition) {
@@ -84,6 +85,8 @@
             }
             case DEAD -> {
                 c.setGameState(GameState.GAME_OVER);
+                sound.stop();
+                playGameOverSound(2);
             }
             }
         }
@@ -97,5 +100,10 @@
             public void playEatSound(int i){
                 eatSound.setFile(i);
                 eatSound.play();
+            }
+
+            public void playGameOverSound(int i){
+            gameOverSound.setFile(i);
+            gameOverSound.play();
             }
 }
