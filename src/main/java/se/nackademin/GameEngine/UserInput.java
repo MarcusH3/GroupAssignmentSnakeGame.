@@ -5,12 +5,10 @@ import java.awt.event.KeyListener;
 
 public class UserInput implements KeyListener {
 
-    private GameComponent c;
     private final int NUMBER_KEYS = 256;
-    private boolean[] keys = new boolean[NUMBER_KEYS];
+    private final boolean[] keys = new boolean[NUMBER_KEYS];
 
     public UserInput(GameComponent c){
-        this.c = c;
 
         c.getWindow().getCanvas().addKeyListener(this);
     }

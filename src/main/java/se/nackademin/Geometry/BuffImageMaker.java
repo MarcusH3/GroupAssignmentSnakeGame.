@@ -10,8 +10,7 @@ public class BuffImageMaker {
 
     public BuffImageMaker() {
         myPanel = new ImagePanel();
-        BufferedImage myCreatedBufImage = getBufferedImage(myPanel);
-        //showBufferedImage(myCreatedBufImage);
+        getBufferedImage(myPanel);
     }
 
     public BufferedImage getBufferedImage(JPanel panel) {

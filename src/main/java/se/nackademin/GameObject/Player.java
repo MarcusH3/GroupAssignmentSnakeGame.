@@ -2,12 +2,11 @@
         package se.nackademin.GameObject;
 
         import se.nackademin.GameEngine.GameComponent;
+        import se.nackademin.GameEngine.GameState;
         import se.nackademin.Geometry.BuffImageMaker;
-        import se.nackademin.Geometry.ShapeMaker;
         import se.nackademin.Window.*;
         import se.nackademin.engine.SnackStatus;
         import se.nackademin.engine.SnakeSituation;
-        import se.nackademin.engine.SnakeSituationService;
         import se.nackademin.engine.SnakeSituationServiceImpl;
 
         import java.awt.*;
@@ -17,16 +16,14 @@
         public class Player extends GameObject {
 
 
-    private int unitSize = 45;
-    private int velocity = 0;
-    private Color colorRGB;
-    private int colorValue;
-    private MoveState moveState;
-    private SnakeSituationService snakeSituationService;
-    private SnakeSituation snakeSituation;
-    private SnakeSituationServiceImpl snakeImpl;
+    private static final int unitSize = 45;
+            private MoveState moveState;
+    private final SnakeSituation snakeSituation;
+    private final SnakeSituationServiceImpl snakeImpl;
     private SnackStatus snackStatus;
-    BuffImageMaker buffImageMaker = new BuffImageMaker();
+            BuffImageMaker buffImageMaker = new BuffImageMaker();
+            private Sound sound = new Sound();
+            private Sound eatSound = new Sound();
     BufferedImage bufferedImage;
 
     public Player(int xPosition, int yPosition) {
@@ -37,21 +34,20 @@
         moveState = MoveState.STILL;
         snakeSituation = new SnakeSituation();
         snakeImpl = new SnakeSituationServiceImpl();
-        snackStatus = SnackStatus.LIVE;
         bufferedImage = buffImageMaker.getBufferedImage(buffImageMaker.getMyPanel());
+        playMusic(1);
     }
 
     @Override
     public void render(GameComponent c, Render r) {
-        colorRGB = new Color(Color.GREEN.getRGB());
-        colorValue = colorRGB.getRGB();
+        Color colorRGB = new Color(Color.GREEN.getRGB());
+        int colorValue = colorRGB.getRGB();
 
-        for(Point point: snakeSituation.getSnake()){
+        for (Point point : snakeSituation.getSnake()) {
 
-            r.drawRectangle(point.x*unitSize,point.y*unitSize,unitSize,unitSize,colorValue);
+            r.drawRectangle(point.x * unitSize, point.y * unitSize, unitSize, unitSize, colorValue);
 
-            r.drawBufferedImage(bufferedImage,snakeSituation.getFood().x*unitSize, snakeSituation.getFood().y*unitSize);
-
+            r.drawBufferedImage(bufferedImage, snakeSituation.getFood().x * unitSize, snakeSituation.getFood().y * unitSize);
         }
     }
 
@@ -79,15 +75,27 @@
             case STILL -> xPosition = xPosition;
             case DEAD -> xPosition = xPosition;
         }
-        switch (snakeSituation.getStatus()){
-            case EAT: {
+        switch (snakeSituation.getStatus()) {
+            case EAT -> {
+                playEatSound(0);
                 c.setSnakeVelocity();
                 buffImageMaker = new BuffImageMaker();
                 bufferedImage = buffImageMaker.getBufferedImage(buffImageMaker.getMyPanel());
-                break;
             }
-            case DEAD: moveState = MoveState.DEAD;
-            break;
+            case DEAD -> {
+                c.setGameState(GameState.GAME_OVER);
+            }
+            }
         }
-    }
+            public void playMusic(int i) {
+                sound.setFile(i);
+                sound.play();
+                sound.loop();
+            }
+            public void stopMusic(){sound.stop();
+            }
+            public void playEatSound(int i){
+                eatSound.setFile(i);
+                eatSound.play();
+            }
 }

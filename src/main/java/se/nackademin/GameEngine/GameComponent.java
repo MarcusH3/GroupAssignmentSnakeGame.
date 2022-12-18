@@ -13,6 +13,7 @@ public class GameComponent implements Runnable {
     private final double nanoValue = 1000000000.0;
     private double addSnakeVelocity = 5.0;
     private double updatePerSeconds = 1.0 / 5.0;
+    private GameState gameState = GameState.TITLE_SCREEN;
 
     public GameComponent(AbstractGame game) {
         this.game = game;
@@ -73,6 +74,14 @@ public class GameComponent implements Runnable {
     public double setSnakeVelocity() {
         System.out.println(updatePerSeconds);
         return this.updatePerSeconds *=  0.95;
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 }
 

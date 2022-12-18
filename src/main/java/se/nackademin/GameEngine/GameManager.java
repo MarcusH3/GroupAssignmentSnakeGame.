@@ -1,62 +1,64 @@
 package se.nackademin.GameEngine;
 import se.nackademin.GameObject.GameObject;
-import se.nackademin.GameObject.Sound;
+import se.nackademin.MenuObject.GameOverScreen;
+import se.nackademin.MenuObject.TitleScreen;
+import se.nackademin.MenuObject.MenuObject;
 import se.nackademin.Window.Render;
 import se.nackademin.GameObject.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GameManager extends AbstractGame{
-    private List<GameObject> gameObjects = new ArrayList<>();
-    Sound sound = new Sound();
-    Sound eatSound = new Sound();
-    Sound GameOver = new Sound();
 
-
+    private final List<GameObject> gameObjects = new ArrayList<>();
+    private final List<MenuObject> titleScreen = new ArrayList<>();
+    private final List<MenuObject> gameOverScreen = new ArrayList<>();
 
     public GameManager() {
-
+        TitleScreen menu = new TitleScreen();
+        GameOverScreen gameOver = new GameOverScreen();
+        titleScreen.add(menu);
         Player player = new Player(0,0);
         gameObjects.add(player);
-        //playMusic(1);
-
+        gameOverScreen.add(gameOver);
     }
     @Override
     public void update(GameComponent c, float dt) {
-        for(GameObject object: gameObjects){
-            object.update(c,dt);
-            
+        if(c.getGameState() == GameState.TITLE_SCREEN) {
+            for (MenuObject object : titleScreen) {
+                object.update(c, dt);
+            }
+        }
+        else if(c.getGameState() == GameState.GAME){
+            for (GameObject object : gameObjects) {
+                object.update(c, dt);
+            }
+        }
+        else if(c.getGameState() == GameState.GAME_OVER){
+            for(MenuObject object: gameOverScreen){
+                object.update(c, dt);
+            }
         }
     }
     @Override
     public void render(GameComponent c, Render r) {
-        for(GameObject object: gameObjects){
-            object.render(c,r);
-            
+        if(c.getGameState() == GameState.TITLE_SCREEN) {
+            for (MenuObject object : titleScreen) {
+                object.render(c, r);
+            }
+        }
+        else if (c.getGameState() == GameState.GAME){
+            for(GameObject object: gameObjects){
+                object.render(c,r);
+            }
+        } else if(c.getGameState() == GameState.GAME_OVER) {
+            for(MenuObject object: gameOverScreen){
+                object.render(c,r);
+            }
         }
     }
     public static void main(String[] args) {
-
         GameComponent game = new GameComponent(new GameManager());
         game.startGame();
-
-    }
-    public void playMusic(int i) {
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
-    }
-    public void stopMusic(){
-
-        sound.stop();
-    }
-    public void playEatSound(int i){
-        eatSound.setFile(i);
-        eatSound.play();
-    }
-    public void playGameOver(int i){
-        GameOver.setFile(i);
-        GameOver.play();
     }
 }
