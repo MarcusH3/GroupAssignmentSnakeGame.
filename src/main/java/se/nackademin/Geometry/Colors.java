@@ -17,7 +17,6 @@ public class Colors {
     int[] yellowmix = {249, 231, 159, 241, 196, 15, 183, 149, 11};
     int[] orangemix = {250, 215, 160, 243, 156, 18, 185, 119, 14};
 
-
     List<int[]> colormixList = new ArrayList<>();
 
     public Colors(){
@@ -32,7 +31,6 @@ public class Colors {
         colormixList.add(orangemix);
         Collections.shuffle(colormixList);
     }
-
     public Color getLightColor() {
         int[] rgb = colormixList.get(0);
         return new Color(rgb[0], rgb[1], rgb[2]);
@@ -45,7 +43,5 @@ public class Colors {
         int[] rgb = colormixList.get(0);
         return new Color(rgb[6], rgb[7], rgb[8]);
     }
-
-
 
 }

@@ -6,8 +6,6 @@ import java.util.List;
 
 public class SnakeSituationServiceImpl implements SnakeSituationService {
 
-    private SnackStatus snackStatus;
-
     @Override
     public SnakeSituation moveLeft(SnakeSituation situation) {
         situation.setStatus(SnackStatus.LIVE);

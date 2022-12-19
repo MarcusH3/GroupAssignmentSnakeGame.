@@ -14,7 +14,6 @@ public class ImagePanel extends JPanel {
         this.setBackground(Color.black);
         shapeMaker = new ShapeMaker();
     }
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

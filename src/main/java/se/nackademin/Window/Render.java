@@ -28,7 +28,7 @@ public class Render {
     public void drawRectangle(int xPosition, int yPosition, int width, int height, int colorValue){
 
         if(xPosition < 0 || xPosition > canvas.getWidth() || yPosition < 0 || yPosition > canvas.getHeight()-height){
-           return;
+
         }
         else {
             for(int i = 0; i < width; i++) {
@@ -48,7 +48,6 @@ public class Render {
             }
         }
     }
-
     public void clearDrawing(){
         Arrays.fill(pixel, 0);
     }
