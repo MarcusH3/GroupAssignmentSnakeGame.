@@ -51,7 +51,6 @@ public class GameOverScreen extends MenuObject{
             c.setGameState(GameState.GAME);
         }
     }
-
     @Override
     public void render(GameComponent c, Render r) {
 

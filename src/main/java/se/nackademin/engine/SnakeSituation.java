@@ -20,13 +20,11 @@ public class SnakeSituation {
         this.food = food;
         this.status = status;
     }
-
     public SnakeSituation(List<Point> snake, Point food, SnackStatus status) {
         this.snake = snake;
         this.food = food;
         this.status = status;
     }
-
     public List<Point> getSnake() {
         return snake;
     }

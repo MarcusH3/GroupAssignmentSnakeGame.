@@ -54,11 +54,4 @@ public class Window {
         return canvas;
     }
 
-    public int getUpdatedWidth() {
-        return dimension.width;
-    }
-
-    public int getUpdatedHeight() {
-        return dimension.height;
-    }
 }

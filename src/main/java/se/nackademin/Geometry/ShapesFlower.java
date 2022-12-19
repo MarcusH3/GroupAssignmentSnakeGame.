@@ -11,7 +11,6 @@ public class ShapesFlower implements Shapes {
         colors = new Colors();
     }
 
-
     public void drawShape(Graphics g, int x, int y, int w, int h) {
         Graphics2D g2d = (Graphics2D)g;
 

@@ -13,8 +13,6 @@ public class ShapesEllips implements Shapes {
     public void drawShape(Graphics g,int x,int y,int w, int h ) {
         Graphics2D g2d = (Graphics2D)g;
 
-
-
         g2d.setStroke(new BasicStroke(3));
 
             Ellipse2D.Double e = new Ellipse2D.Double(x, y, w, h);

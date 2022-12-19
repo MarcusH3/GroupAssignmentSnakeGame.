@@ -14,8 +14,6 @@
         import java.awt.image.BufferedImage;
 
         public class Player extends GameObject {
-
-
     private static final int unitSize = 45;
             private MoveState moveState;
     private final SnakeSituation snakeSituation;
@@ -30,13 +28,14 @@
     public Player(int xPosition, int yPosition) {
         this.xPosition = xPosition;
         this.yPosition= yPosition;
+        this.objectWidth = 45;
+        this.objectHeight = 45;
         moveState = MoveState.STILL;
         snakeSituation = new SnakeSituation();
         snakeImpl = new SnakeSituationServiceImpl();
         bufferedImage = buffImageMaker.getBufferedImage(buffImageMaker.getMyPanel());
         playMusic(1);
     }
-
     @Override
     public void render(GameComponent c, Render r) {
         Color colorRGB = new Color(Color.GREEN.getRGB());
@@ -49,33 +48,20 @@
             r.drawBufferedImage(bufferedImage, snakeSituation.getFood().x * unitSize, snakeSituation.getFood().y * unitSize);
         }
     }
-
     @Override
     public void update(GameComponent c, float dt) {
 
 
         if (c.getUserInput().isKey(KeyEvent.VK_UP)) {
-            if (moveState==MoveState.DOWN){
-                c.setGameState(GameState.GAME_OVER);
-            }
             moveState = MoveState.UP;
         }
         if (c.getUserInput().isKey(KeyEvent.VK_DOWN)) {
-            if (moveState==MoveState.UP){
-                c.setGameState(GameState.GAME_OVER);
-            }
             moveState = MoveState.DOWN;
         }
         if (c.getUserInput().isKey(KeyEvent.VK_LEFT)) {
-            if (moveState==MoveState.RIGHT){
-                c.setGameState(GameState.GAME_OVER);
-            }
             moveState = MoveState.LEFT;
         }
         if (c.getUserInput().isKey(KeyEvent.VK_RIGHT)) {
-            if (moveState==MoveState.LEFT){
-                c.setGameState(GameState.GAME_OVER);
-            }
             moveState = MoveState.RIGHT;
         }
         switch (moveState) {
@@ -115,5 +101,6 @@
             public void playGameOverSound(int i){
             gameOverSound.setFile(i);
             gameOverSound.play();
-            }
+
+    }
 }
