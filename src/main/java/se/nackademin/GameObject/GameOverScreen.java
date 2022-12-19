@@ -1,4 +1,4 @@
-package se.nackademin.MenuObject;
+package se.nackademin.GameObject;
 
 import se.nackademin.GameEngine.GameComponent;
 import se.nackademin.GameEngine.GameState;
@@ -7,7 +7,7 @@ import se.nackademin.Window.Render;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class GameOverScreen extends MenuObject{
+public class GameOverScreen extends GameObject {
     private int [][] points;
     public GameOverScreen(){
         points = new int[][]

@@ -1,4 +1,4 @@
-package se.nackademin.MenuObject;
+package se.nackademin.GameObject;
 
 import se.nackademin.GameEngine.GameComponent;
 import se.nackademin.GameEngine.GameState;
@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-public class TitleScreen extends MenuObject{
+public class TitleScreen extends GameObject {
 
     private int[][]  points;
     private GameComponent c;

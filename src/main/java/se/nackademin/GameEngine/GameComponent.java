@@ -11,7 +11,6 @@ public class GameComponent implements Runnable {
     private boolean RUNNING = false;
     private boolean RENDER = false;
     private final double nanoValue = 1000000000.0;
-    private double addSnakeVelocity = 5.0;
     private double updatePerSeconds = 1.0 / 5.0;
     private GameState gameState = GameState.TITLE_SCREEN;
 
@@ -59,9 +58,6 @@ public class GameComponent implements Runnable {
                 game.render(this, render);
             }
         }
-    }
-    public Render getRender(){
-        return render;
     }
     public Window getWindow(){
         return window;

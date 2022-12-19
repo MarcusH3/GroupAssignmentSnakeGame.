@@ -5,15 +5,12 @@ import se.nackademin.GameEngine.GameComponent;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Arrays;
 
 public class Render {
     private Canvas canvas;
-    private int pixelWidth = 45;
-    private int pixelHeight = 45;
     private int[] pixel;
     private int[] imagePixel;
-
-
 
     public Render(GameComponent c) {
 
@@ -27,18 +24,6 @@ public class Render {
             return;
         }
         pixel[xPosition + yPosition*canvas.getWidth()] = colorValue;
-    }
-
-    public void drawGrid(Graphics g, int noGrids, int width, int height){
-
-        for (int i = 0; i < noGrids; i++) {
-            g.setColor(Color.black);
-            g.drawLine(i*width/noGrids,0,i*width/noGrids, height);
-        }
-        for (int i = 0; i < noGrids; i++) {
-            g.setColor(Color.black);
-            g.drawLine(0,i*height/noGrids,width, i*height/noGrids);
-        }
     }
     public void drawRectangle(int xPosition, int yPosition, int width, int height, int colorValue){
 
@@ -65,8 +50,6 @@ public class Render {
     }
 
     public void clearDrawing(){
-        for (int i = 0; i < pixel.length; i++) {
-            pixel[i] = 0;
-        }
+        Arrays.fill(pixel, 0);
     }
 }

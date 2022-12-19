@@ -1,8 +1,7 @@
 package se.nackademin.GameEngine;
 import se.nackademin.GameObject.GameObject;
-import se.nackademin.MenuObject.GameOverScreen;
-import se.nackademin.MenuObject.TitleScreen;
-import se.nackademin.MenuObject.MenuObject;
+import se.nackademin.GameObject.GameOverScreen;
+import se.nackademin.GameObject.TitleScreen;
 import se.nackademin.Window.Render;
 import se.nackademin.GameObject.Player;
 import java.util.ArrayList;
@@ -11,8 +10,8 @@ import java.util.List;
 public class GameManager extends AbstractGame{
 
     private final List<GameObject> gameObjects = new ArrayList<>();
-    private final List<MenuObject> titleScreen = new ArrayList<>();
-    private final List<MenuObject> gameOverScreen = new ArrayList<>();
+    private final List<GameObject> titleScreen = new ArrayList<>();
+    private final List<GameObject> gameOverScreen = new ArrayList<>();
 
     public GameManager() {
         TitleScreen menu = new TitleScreen();
@@ -25,7 +24,7 @@ public class GameManager extends AbstractGame{
     @Override
     public void update(GameComponent c, float dt) {
         if(c.getGameState() == GameState.TITLE_SCREEN) {
-            for (MenuObject object : titleScreen) {
+            for (GameObject object : titleScreen) {
                 object.update(c, dt);
             }
         }
@@ -35,7 +34,7 @@ public class GameManager extends AbstractGame{
             }
         }
         else if(c.getGameState() == GameState.GAME_OVER){
-            for(MenuObject object: gameOverScreen){
+            for(GameObject object: gameOverScreen){
                 object.update(c, dt);
             }
         }
@@ -43,7 +42,7 @@ public class GameManager extends AbstractGame{
     @Override
     public void render(GameComponent c, Render r) {
         if(c.getGameState() == GameState.TITLE_SCREEN) {
-            for (MenuObject object : titleScreen) {
+            for (GameObject object : titleScreen) {
                 object.render(c, r);
             }
         }
@@ -52,7 +51,7 @@ public class GameManager extends AbstractGame{
                 object.render(c,r);
             }
         } else if(c.getGameState() == GameState.GAME_OVER) {
-            for(MenuObject object: gameOverScreen){
+            for(GameObject object: gameOverScreen){
                 object.render(c,r);
             }
         }
