@@ -30,8 +30,6 @@
     public Player(int xPosition, int yPosition) {
         this.xPosition = xPosition;
         this.yPosition= yPosition;
-        this.objectWidth = 45;
-        this.objectHeight = 45;
         moveState = MoveState.STILL;
         snakeSituation = new SnakeSituation();
         snakeImpl = new SnakeSituationServiceImpl();
@@ -57,15 +55,27 @@
 
 
         if (c.getUserInput().isKey(KeyEvent.VK_UP)) {
+            if (moveState==MoveState.DOWN){
+                c.setGameState(GameState.GAME_OVER);
+            }
             moveState = MoveState.UP;
         }
         if (c.getUserInput().isKey(KeyEvent.VK_DOWN)) {
+            if (moveState==MoveState.UP){
+                c.setGameState(GameState.GAME_OVER);
+            }
             moveState = MoveState.DOWN;
         }
         if (c.getUserInput().isKey(KeyEvent.VK_LEFT)) {
+            if (moveState==MoveState.RIGHT){
+                c.setGameState(GameState.GAME_OVER);
+            }
             moveState = MoveState.LEFT;
         }
         if (c.getUserInput().isKey(KeyEvent.VK_RIGHT)) {
+            if (moveState==MoveState.LEFT){
+                c.setGameState(GameState.GAME_OVER);
+            }
             moveState = MoveState.RIGHT;
         }
         switch (moveState) {
