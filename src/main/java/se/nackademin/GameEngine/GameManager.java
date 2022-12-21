@@ -7,17 +7,18 @@ import se.nackademin.GameObject.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameManager extends AbstractGame{
+public class GameManager implements AbstractGame{
 
     private final List<GameObject> gameObjects = new ArrayList<>();
     private final List<GameObject> titleScreen = new ArrayList<>();
     private final List<GameObject> gameOverScreen = new ArrayList<>();
+    private Player player;
 
     public GameManager() {
         TitleScreen menu = new TitleScreen();
         GameOverScreen gameOver = new GameOverScreen();
         titleScreen.add(menu);
-        Player player = new Player(0,0);
+        player = new Player(0,0);
         gameObjects.add(player);
         gameOverScreen.add(gameOver);
     }
@@ -57,7 +58,7 @@ public class GameManager extends AbstractGame{
         }
     }
     public static void main(String[] args) {
-        GameComponent game = new GameComponent(new GameManager());
-        game.startGame();
+        GameComponent.getInstance(new GameManager());
+
     }
 }

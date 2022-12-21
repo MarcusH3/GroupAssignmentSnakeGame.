@@ -21,8 +21,8 @@
     private SnackStatus snackStatus;
             BuffImageMaker buffImageMaker = new BuffImageMaker();
             private Sound sound = new Sound();
-            private Sound eatSound = new Sound();
-            private Sound gameOverSound = new Sound();
+            private final Sound eatSound = new Sound();
+            private final Sound gameOverSound = new Sound();
     BufferedImage bufferedImage;
 
     public Player(int xPosition, int yPosition) {
@@ -51,26 +51,44 @@
     @Override
     public void update(GameComponent c, float dt) {
 
-
         if (c.getUserInput().isKey(KeyEvent.VK_UP)) {
+            if(moveState == MoveState.DOWN) {
+                snackStatus = SnackStatus.DEAD;
+                snakeSituation.setStatus(snackStatus);
+            }
             moveState = MoveState.UP;
-        }
+            }
+
         if (c.getUserInput().isKey(KeyEvent.VK_DOWN)) {
+            if(moveState == MoveState.UP) {
+                snackStatus = SnackStatus.DEAD;
+                snakeSituation.setStatus(snackStatus);
+            }
             moveState = MoveState.DOWN;
         }
         if (c.getUserInput().isKey(KeyEvent.VK_LEFT)) {
+            if(moveState == MoveState.RIGHT) {
+                snackStatus = SnackStatus.DEAD;
+                snakeSituation.setStatus(snackStatus);
+            }
             moveState = MoveState.LEFT;
         }
         if (c.getUserInput().isKey(KeyEvent.VK_RIGHT)) {
+            if(moveState == MoveState.LEFT) {
+                snackStatus = SnackStatus.DEAD;
+                snakeSituation.setStatus(snackStatus);
+            }
             moveState = MoveState.RIGHT;
         }
-        switch (moveState) {
-            case UP -> snakeImpl.moveUp(snakeSituation);
-            case DOWN -> snakeImpl.moveDown(snakeSituation);
-            case LEFT -> snakeImpl.moveLeft(snakeSituation);
-            case RIGHT -> snakeImpl.moveRight(snakeSituation);
-            case STILL -> xPosition = xPosition;
-            case DEAD -> xPosition = xPosition;
+        if(snackStatus != SnackStatus.DEAD) {
+            switch (moveState) {
+                case UP -> snakeImpl.moveUp(snakeSituation);
+                case DOWN -> snakeImpl.moveDown(snakeSituation);
+                case LEFT -> snakeImpl.moveLeft(snakeSituation);
+                case RIGHT -> snakeImpl.moveRight(snakeSituation);
+                case STILL -> xPosition = xPosition;
+                case DEAD -> xPosition = xPosition;
+            }
         }
         switch (snakeSituation.getStatus()) {
             case EAT -> {

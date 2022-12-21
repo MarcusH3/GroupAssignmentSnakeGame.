@@ -48,7 +48,8 @@ public class GameOverScreen extends GameObject {
     @Override
     public void update(GameComponent c, float dt) {
         if(c.getUserInput().isKey(KeyEvent.VK_ESCAPE)){
-            c.setGameState(GameState.GAME);
+            System.exit(1);
+           // c.setGameState(GameState.TITLE_SCREEN);
         }
     }
     @Override

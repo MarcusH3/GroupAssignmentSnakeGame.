@@ -3,7 +3,7 @@ import se.nackademin.Window.Window;
 import se.nackademin.Window.Render;
 
 public class GameComponent implements Runnable {
-    private AbstractGame game;
+    private final AbstractGame game;
     private Window window;
     private UserInput userInput;
     private Render render;
@@ -14,8 +14,17 @@ public class GameComponent implements Runnable {
     private double updatePerSeconds = 1.0 / 5.0;
     private GameState gameState = GameState.TITLE_SCREEN;
 
-    public GameComponent(AbstractGame game) {
+    private static GameComponent gameComponent = null;
+
+    private  GameComponent(AbstractGame game){
         this.game = game;
+        startGame();
+    }
+    public static GameComponent getInstance(AbstractGame game){
+        if(gameComponent == null){
+            gameComponent = new GameComponent(game);
+        }
+        return gameComponent;
     }
 
     public synchronized void startGame() {
@@ -33,10 +42,9 @@ public class GameComponent implements Runnable {
     @Override
     public void run() {
 
-        int count = 1;
         double initTime = System.nanoTime() / nanoValue;
-        double startTime = 0;
-        double timePassed = 0;
+        double startTime;
+        double timePassed;
         double processedTime = 0;
 
         while (RUNNING) {
@@ -50,7 +58,7 @@ public class GameComponent implements Runnable {
                 processedTime -= updatePerSeconds;
                 RENDER = true;
                 game.update(this, (float) updatePerSeconds);
-                userInput.updateKeyBool();
+                //userInput.updateKeyBool();
             }
             if (RENDER) {
                 window.updateWindow();
@@ -68,7 +76,6 @@ public class GameComponent implements Runnable {
     }
 
     public double setSnakeVelocity() {
-        System.out.println(updatePerSeconds);
         return this.updatePerSeconds *=  0.95;
     }
 
